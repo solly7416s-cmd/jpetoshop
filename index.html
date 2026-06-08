@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>JpetoShop | سرویس‌های پرسرعت، امن و ۲۴ ساعته</title>
+    <title>JpetoShop | پنل V2RayNG ، NPV Tunnel ، IranGuardVPN</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Vazir Font -->
@@ -178,11 +178,11 @@
 
         .grid-card {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
         }
-        .service-card, .feature-card, .plan-card {
+        .service-card, .feature-card {
             background: var(--glass-bg);
             backdrop-filter: blur(6px);
             border-radius: 28px;
@@ -192,7 +192,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
-        .service-card:hover, .feature-card:hover, .plan-card:hover {
+        .service-card:hover, .feature-card:hover {
             transform: translateY(-8px);
             border-color: var(--neon-blue);
             box-shadow: 0 0 22px rgba(0, 243, 255, 0.4), 0 0 8px rgba(191, 0, 255, 0.3);
@@ -206,7 +206,7 @@
             color: transparent;
             margin-bottom: 1rem;
         }
-        .service-card h3, .feature-card h3, .plan-card h3 {
+        .service-card h3, .feature-card h3 {
             font-size: 1.6rem;
             margin-bottom: 1rem;
         }
@@ -215,49 +215,134 @@
             font-size: 0.95rem;
         }
 
-        .price {
-            font-size: 2rem;
-            font-weight: 800;
-            margin: 1rem 0;
-            background: linear-gradient(145deg, #fff, #b0f0ff);
+        /* ===== استایل جدید پلن‌ها (محصولات) ===== */
+        .product-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.3);
+        }
+        .product-header {
+            background: linear-gradient(135deg, rgba(0,243,255,0.15), rgba(191,0,255,0.1));
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0,243,255,0.2);
+        }
+        .product-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff, #00f3ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        .plan-card ul {
-            list-style: none;
-            margin: 1.5rem 0;
-            text-align: right;
+        .product-badge {
+            font-size: 0.8rem;
+            background: rgba(0,0,0,0.5);
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
         }
-        .plan-card ul li {
-            padding: 0.4rem 0;
+        .common-features {
+            padding: 1rem 1.5rem;
+            background: rgba(0,0,0,0.3);
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 1.5rem;
+            border-bottom: 1px dashed rgba(191,0,255,0.3);
+        }
+        .common-features span {
+            font-size: 0.8rem;
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            color: #ddd;
+        }
+        .common-features i {
+            color: var(--neon-blue);
             font-size: 0.9rem;
         }
-        .plan-card ul li i {
-            color: var(--neon-blue);
-            width: 20px;
+        .volume-buttons {
+            padding: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
         }
-        .btn-small {
-            background: transparent;
-            border: 1px solid var(--neon-purple);
-            padding: 0.6rem 1.2rem;
+        .volume-btn {
+            background: rgba(5,5,15,0.8);
+            border: 1px solid rgba(0,243,255,0.4);
             border-radius: 40px;
-            color: var(--neon-purple);
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #eef;
             text-decoration: none;
-            font-weight: bold;
             transition: 0.2s;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Vazir', sans-serif;
         }
-        .btn-small:hover {
-            background: var(--neon-purple);
-            color: black;
-            box-shadow: 0 0 12px #bf00ff;
+        .volume-btn i {
+            font-size: 0.8rem;
+            color: var(--neon-purple);
+        }
+        .volume-btn:hover {
+            background: var(--neon-blue);
+            color: #000;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 12px var(--neon-blue);
+            transform: scale(1.02);
+        }
+        .volume-btn:hover i {
+            color: #000;
+        }
+        .free-trial-section {
+            margin-top: 3rem;
+            text-align: center;
+            background: rgba(191,0,255,0.1);
+            border-radius: 3rem;
+            padding: 2rem;
+            border: 1px solid var(--neon-purple);
+            backdrop-filter: blur(8px);
+        }
+        .free-trial-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .btn-free-trial {
+            background: linear-gradient(135deg, #00f3ff, #bf00ff);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #000;
+            border-radius: 60px;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 0 15px rgba(0,243,255,0.5);
+        }
+        .btn-free-trial:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(191,0,255,0.7);
         }
 
-        /* FAQ */
+        /* FAQ & Contact */
         .faq-list {
             max-width: 900px;
             margin: 0 auto;
@@ -300,7 +385,6 @@
             transform: rotate(180deg);
         }
 
-        /* Contact */
         .contact-grid {
             display: flex;
             flex-wrap: wrap;
@@ -362,22 +446,19 @@
             .section-title {
                 font-size: 1.8rem;
             }
-            .contact-card {
-                padding: 0.8rem 1.3rem;
-            }
-            .contact-card span {
-                font-size: 0.9rem;
+            .volume-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.75rem;
             }
         }
         @media (max-width: 480px) {
             .grid-card {
                 gap: 1rem;
             }
-            .service-card, .feature-card, .plan-card {
-                padding: 1.2rem;
+            .volume-buttons {
+                gap: 0.5rem;
             }
         }
-
         .glow-bg {
             position: fixed;
             width: 100%;
@@ -411,21 +492,21 @@
 </header>
 
 <main>
-    <!-- صفحه اصلی با لوگو JpetoShop -->
+    <!-- صفحه اصلی با لوگو -->
     <section id="home">
         <div class="container hero">
             <div class="hero-logo">
                 <i class="fas fa-bolt"></i> JpetoShop
             </div>
             <div class="hero-glow">
-                <i class="fas fa-gem"></i> پرسرعت، امن و همیشه در دسترس | پشتیبانی ۲۴ ساعته
+                <i class="fas fa-gem"></i> VPN Tunnel ، V2RayNG ، IranGuardVPN | پشتیبانی ۲۴ ساعته
             </div>
-            <a href="#plans" class="btn-neon">شروع کنید <i class="fas fa-arrow-left"></i></a>
+            <a href="#plans" class="btn-neon">مشاهده سرویس‌ها <i class="fas fa-arrow-left"></i></a>
             <a href="#contact" class="btn-neon btn-purple" style="margin-right: 1rem;">تماس با ما</a>
         </div>
     </section>
 
-    <!-- سرویس‌های چهارگانه: پرسرعت، پشتیبانی ۲۴ ساعته، امنیت بالا، راه‌اندازی سریع -->
+    <!-- معرفی خدمات ثابت -->
     <section id="services">
         <div class="container">
             <h2 class="section-title"><span>سرویس‌های اختصاصی JpetoShop</span></h2>
@@ -483,47 +564,92 @@
         </div>
     </section>
 
-    <!-- پلن‌های نمونه متناسب با JpetoShop -->
+    <!-- بخش جدید پلن‌ها: V2RayNG , NPV Tunnel , IranGuardVPN -->
     <section id="plans">
         <div class="container">
-            <h2 class="section-title"><span>پلن‌های ویژه JpetoShop</span></h2>
-            <div class="grid-card" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-                <div class="plan-card">
-                    <i class="fas fa-seedling icon-lg"></i>
-                    <h3>شروع</h3>
-                    <div class="price">تومان ۲۵۹,۰۰۰</div>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> ۲۰ گیگ حجم</li>
-                        <li><i class="fas fa-check-circle"></i> تعداد کاربر نا محدود</li>
-                        <li><i class="fas fa-check-circle"></i> پشتیبانی ۱۲ ساعته</li>
-                        <li><i class="fas fa-check-circle"></i> SSL رایگان</li>
-                    </ul>
-                    <a href="#" class="btn-small">راه‌اندازی سریع</a>
+            <h2 class="section-title"><span>انتخاب سرویس مورد نظر شما</span></h2>
+            <div class="grid-card" style="grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 2rem;">
+                
+                <!-- محصول 1: V2RayNG -->
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3><i class="fas fa-broadcast-tower"></i> V2RayNG</h3>
+                        <div class="product-badge">پروتکل مدرن</div>
+                    </div>
+                    <div class="common-features">
+                        <span><i class="fas fa-users"></i> کاربران نامحدود</span>
+                        <span><i class="fas fa-hourglass-half"></i> زمان نامحدود</span>
+                        <span><i class="fas fa-headset"></i> پشتیبانی ۲۴ ساعته</span>
+                        <span><i class="fas fa-tachometer-alt"></i> سرعت بالا</span>
+                        <span><i class="fas fa-chart-line"></i> پایداری بالا</span>
+                    </div>
+                    <div class="volume-buttons">
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> تست رایگان</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 1 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 5 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 10 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 20 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 50 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 100 گیگ</a>
+                    </div>
                 </div>
-                <div class="plan-card" style="border-color: #00f3ff40;">
-                    <i class="fas fa-chart-simple icon-lg"></i>
-                    <h3>حرفه‌ای</h3>
-                    <div class="price">تومان ۵۹۹,۰۰۰</div>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> ۵۰ گیگ NVMe + کش</li>
-                        <li><i class="fas fa-check-circle"></i> پهنای باند ۳۰۰ گیگابایت</li>
-                        <li><i class="fas fa-check-circle"></i> پشتیبانی ۲۴ ساعته</li>
-                        <li><i class="fas fa-check-circle"></i> بکاپ خودکار روزانه</li>
-                    </ul>
-                    <a href="#" class="btn-small">دریافت پلن</a>
+
+                <!-- محصول 2: NPV Tunnel -->
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3><i class="fas fa-shield-virus"></i> NPV Tunnel</h3>
+                        <div class="product-badge">ترکیب هوشمند</div>
+                    </div>
+                    <div class="common-features">
+                        <span><i class="fas fa-users"></i> کاربران نامحدود</span>
+                        <span><i class="fas fa-hourglass-half"></i> زمان نامحدود</span>
+                        <span><i class="fas fa-headset"></i> پشتیبانی ۲۴ ساعته</span>
+                        <span><i class="fas fa-tachometer-alt"></i> سرعت بالا</span>
+                        <span><i class="fas fa-chart-line"></i> پایداری بالا</span>
+                    </div>
+                    <div class="volume-buttons">
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> تست رایگان</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 1 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 5 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 10 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 20 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 50 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 100 گیگ</a>
+                    </div>
                 </div>
-                <div class="plan-card">
-                    <i class="fas fa-crown icon-lg"></i>
-                    <h3>شرکتی</h3>
-                    <div class="price">تومان ۱,۲۹۹,۰۰۰</div>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> ۲۰۰ گیگ NVMe + CDN</li>
-                        <li><i class="fas fa-check-circle"></i> پهنای باند نامحدود</li>
-                        <li><i class="fas fa-check-circle"></i> پشتیبانی VIP ۲۴/۷</li>
-                        <li><i class="fas fa-check-circle"></i> گواهی Wildcard SSL</li>
-                    </ul>
-                    <a href="#" class="btn-small">مشاوره اختصاصی</a>
+
+                <!-- محصول 3: IranGuardVPN -->
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3><i class="fas fa-flag-checkered"></i> IranGuardVPN</h3>
+                        <div class="product-badge">امنیت ویژه</div>
+                    </div>
+                    <div class="common-features">
+                        <span><i class="fas fa-users"></i> کاربران نامحدود</span>
+                        <span><i class="fas fa-hourglass-half"></i> زمان نامحدود</span>
+                        <span><i class="fas fa-headset"></i> پشتیبانی ۲۴ ساعته</span>
+                        <span><i class="fas fa-tachometer-alt"></i> سرعت بالا</span>
+                        <span><i class="fas fa-chart-line"></i> پایداری بالا</span>
+                    </div>
+                    <div class="volume-buttons">
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> تست رایگان</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 1 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 5 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 10 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 20 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 50 گیگ</a>
+                        <a href="https://t.me/JpetoShop" class="volume-btn"><i class="fab fa-telegram"></i> 100 گیگ</a>
+                    </div>
                 </div>
+            </div>
+
+            <!-- بخش دریافت تست رایگان در تلگرام (دکمه مجزا) -->
+            <div class="free-trial-section">
+                <h3><i class="fas fa-gift"></i> تست رایگان ویژه</h3>
+                <p>همین حالا سرویس خود را به صورت کاملاً رایگان امتحان کنید</p>
+                <a href="https://t.me/JpetoShop" target="_blank" class="btn-free-trial">
+                    <i class="fab fa-telegram"></i> دریافت تست رایگان در تلگرام
+                </a>
             </div>
         </div>
     </section>
@@ -539,34 +665,34 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        ما ارائه‌دهنده خدمات میزبانی ابری با سرعت فوق‌العاده، امنیت بالا، پشتیبانی ۲۴ ساعته و راه‌اندازی سریع برای فروشگاه‌ها و کسب‌وکارهای دیجیتال هستیم.
+                        ما ارائه‌دهنده سرویس‌های پیشرفته V2RayNG، NPV Tunnel و IranGuardVPN با حجم‌های متنوع، پشتیبانی ۲۴ ساعته و امنیت بالا هستیم.
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>🔹 آیا امکان ارتقا از پلن شروع به حرفه‌ای وجود دارد؟</span>
+                        <span>🔹 آیا امکان دریافت تست رایگان وجود دارد؟</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        بله، بدون نیاز به مهاجرت و با یک کلیک می‌توانید پلن خود را ارتقا دهید. منابع جدید فوراً اعمال می‌شود.
+                        بله، با مراجعه به بخش پلن‌ها و کلیک روی دکمه تست رایگان یا استفاده از دکمه بزرگ دریافت تست رایگان در تلگرام می‌توانید سرویس آزمایشی دریافت کنید.
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>🔹 مدت زمان راه‌اندازی سرویس چقدر است؟</span>
+                        <span>🔹 مدت زمان استفاده از حجم‌ها چقدر است؟</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        سرویس‌های JpetoShop در کمتر از ۵ دقیقه پس از ثبت‌نامه به صورت خودکار راه‌اندازی می‌شوند.
+                        تمام حجم‌های خریداری شده همراه با **زمان نامحدود** هستند و تا زمانی که حجم مصرف نشود، اعتبار دارند.
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>🔹 چگونه می‌توانم از پشتیبانی ۲۴ ساعته استفاده کنم؟</span>
+                        <span>🔹 چگونه می‌توانم سفارش خود را ثبت کنم؟</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        از طریق پیام‌رسان‌های تلگرام، روبیکا، بله و سروش با شناسه @JpetoShop و همچنین سیستم تیکت داخل پنل کاربری.
+                        کافیست روی دکمه سفارش در تلگرام (هر حجم) کلیک کنید و مستقیماً به اکانت پشتیبانی @JpetoShop متصل می‌شوید.
                     </div>
                 </div>
             </div>
@@ -601,8 +727,8 @@
 
 <footer>
     <div class="container">
-        <p>© ۲۰۲۵ JpetoShop | تمامی حقوق محفوظ است | همراه همیشگی کسب‌وکارهای دیجیتال</p>
-        <p style="margin-top: 8px; font-size:0.8rem;"><i class="fas fa-shield-alt"></i> سرعت · امنیت · پشتیبانی ۲۴ ساعته · راه‌اندازی سریع</p>
+        <p>© ۲۰۲۵ JpetoShop | تمامی حقوق محفوظ است | قدرتمندترین سرویس‌های VPN و تونل در ایران</p>
+        <p style="margin-top: 8px; font-size:0.8rem;"><i class="fas fa-shield-alt"></i> سرعت · امنیت · پشتیبانی ۲۴ ساعته · حجم نامحدود با زمان نامحدود</p>
     </div>
 </footer>
 
@@ -621,8 +747,8 @@
         });
     });
 
-    // Smooth scroll with offset for sticky header
-    document.querySelectorAll('.nav-links a, .btn-neon, .btn-small').forEach(anchor => {
+    // Smooth scroll with offset
+    document.querySelectorAll('.nav-links a, .btn-neon, .btn-free-trial').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
             if (targetId && targetId.startsWith('#') && targetId !== '#') {
@@ -638,7 +764,7 @@
         });
     });
 
-    // Change header transparency on scroll
+    // Header transparency on scroll
     window.addEventListener('scroll', () => {
         const header = document.querySelector('.glass-header');
         if (window.scrollY > 10) {
