@@ -249,8 +249,7 @@
         .copy-btn {
             cursor: pointer;
         }
-        /* rest of existing styles for plans, faq etc remain untouched */
-        /* keep all previous styles for service-selector, plan-card-select, volume-buttons etc */
+        /* existing plan styles */
         .service-selector {
             display: flex;
             justify-content: center;
@@ -421,10 +420,110 @@
             border-top: 1px solid rgba(0, 243, 255, 0.2);
             margin-top: 4rem;
         }
+        /* Modal Styles (Neon, matching current design) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s;
+        }
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-container {
+            background: rgba(8, 8, 18, 0.95);
+            backdrop-filter: blur(16px);
+            border-radius: 40px;
+            max-width: 500px;
+            width: 90%;
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            direction: rtl;
+            transform: scale(0.95);
+            transition: transform 0.2s;
+        }
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+        .modal-container h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #aaf0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .admin-option {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 243, 255, 0.4);
+            border-radius: 32px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        .admin-id {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--neon-blue);
+            margin-bottom: 0.5rem;
+        }
+        .modal-btn {
+            background: transparent;
+            border: 1.5px solid var(--neon-purple);
+            border-radius: 40px;
+            padding: 0.6rem 1.2rem;
+            font-weight: bold;
+            color: var(--neon-purple);
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Vazir', sans-serif;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        .modal-btn:hover {
+            background: var(--neon-purple);
+            color: #000;
+            box-shadow: 0 0 12px var(--neon-purple);
+        }
+        .warning-text {
+            font-size: 0.8rem;
+            color: #ffcc88;
+            background: rgba(0,0,0,0.4);
+            border-radius: 40px;
+            padding: 0.5rem;
+            margin: 1rem 0;
+        }
+        .close-modal {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            left: 1rem;
+            top: 0.5rem;
+        }
+        .modal-container {
+            position: relative;
+        }
         @media (max-width: 768px) {
             .container { padding: 0 1rem; }
             .plan-card-select { min-width: 140px; }
             .volume-chip { padding: 0.4rem 0.8rem; }
+            .contact-grid { gap: 1rem; }
+            .modal-container { width: 95%; padding: 1.2rem; }
         }
     </style>
 </head>
@@ -472,43 +571,16 @@
         </div>
     </div></section>
 
-    <!-- بخش اضافه شده: وضعیت سرورها، آمار کاربران، آموزش اتصال -->
     <div class="container">
         <div class="grid-card" style="margin-top:1rem;">
-            <!-- کارت وضعیت سرورها -->
-            <div class="extra-card">
-                <i class="fas fa-server icon-lg"></i>
-                <h3>وضعیت سرورها</h3>
-                <div class="status-list">
-                    <div class="status-item"><span>V2RayNG</span><span class="status-online">🟢 Online</span></div>
-                    <div class="status-item"><span>NPV Tunnel</span><span class="status-online">🟢 Online</span></div>
-                    <div class="status-item"><span>IranGuardVPN</span><span class="status-online">🟢 Online</span></div>
-                </div>
-            </div>
-            <!-- کارت آمار کاربران با شمارنده انیمیشنی -->
-            <div class="extra-card" id="statsCard">
-                <i class="fas fa-chart-line icon-lg"></i>
-                <h3>آمار کاربران</h3>
-                <div style="margin:1rem 0;"><span class="counter-number" id="activeUsers">0</span> <span>👥 کاربران فعال</span></div>
-                <div style="margin:1rem 0;"><span class="counter-number" id="deliveredServices">0</span> <span>⚡ سرویس‌های تحویل شده</span></div>
-                <div style="margin:1rem 0;"><span class="counter-number" id="stabilityPercent">0</span> <span>🛡 میزان پایداری (٪)</span></div>
-            </div>
-            <!-- کارت آموزش اتصال -->
-            <div class="extra-card">
-                <i class="fas fa-graduation-cap icon-lg"></i>
-                <h3>آموزش اتصال</h3>
-                <div class="tutorial-item"><i class="fab fa-android" style="color:#00f3ff;"></i> <span>آموزش اندروید</span></div>
-                <div class="tutorial-item"><i class="fab fa-apple" style="color:#bf00ff;"></i> <span>آموزش آیفون</span></div>
-                <div class="tutorial-item"><i class="fab fa-windows" style="color:#00f3ff;"></i> <span>آموزش ویندوز</span></div>
-            </div>
+            <div class="extra-card"><i class="fas fa-server icon-lg"></i><h3>وضعیت سرورها</h3><div class="status-list"><div class="status-item"><span>V2RayNG</span><span class="status-online">🟢 Online</span></div><div class="status-item"><span>NPV Tunnel</span><span class="status-online">🟢 Online</span></div><div class="status-item"><span>IranGuardVPN</span><span class="status-online">🟢 Online</span></div></div></div>
+            <div class="extra-card" id="statsCard"><i class="fas fa-chart-line icon-lg"></i><h3>آمار کاربران</h3><div style="margin:1rem 0;"><span class="counter-number" id="activeUsers">0</span> <span>👥 کاربران فعال</span></div><div style="margin:1rem 0;"><span class="counter-number" id="deliveredServices">0</span> <span>⚡ سرویس‌های تحویل شده</span></div><div style="margin:1rem 0;"><span class="counter-number" id="stabilityPercent">0</span> <span>🛡 میزان پایداری (٪)</span></div></div>
+            <div class="extra-card"><i class="fas fa-graduation-cap icon-lg"></i><h3>آموزش اتصال</h3><div class="tutorial-item"><i class="fab fa-android" style="color:#00f3ff;"></i> <span>آموزش اندروید</span></div><div class="tutorial-item"><i class="fab fa-apple" style="color:#bf00ff;"></i> <span>آموزش آیفون</span></div><div class="tutorial-item"><i class="fab fa-windows" style="color:#00f3ff;"></i> <span>آموزش ویندوز</span></div></div>
         </div>
     </div>
 
-    <!-- بنر پیشنهاد ویژه بالای بخش پلن‌ها -->
     <section id="plans"><div class="container">
-        <div class="promo-banner">
-            🔥 پیشنهاد ویژه امروز | VIP + پشتیبانی ویژه + تست رایگان
-        </div>
+        <div class="promo-banner">🔥 پیشنهاد ویژه امروز | VIP + پشتیبانی ویژه + تست رایگان</div>
         <h2 class="section-title"><span>پلن‌های ویژه JpetoShop</span></h2>
         <div class="service-selector" id="serviceSelector">
             <button class="service-btn active" data-service="V2RayNG"><i class="fas fa-bolt"></i> V2RayNG</button>
@@ -521,12 +593,11 @@
             <div class="plan-card-select" data-plan="اقتصادی"><div class="plan-title">اقتصادی</div><ul class="plan-feature-list"><li><i class="fas fa-tag"></i> قیمت کمتر</li><li><i class="fas fa-tachometer-alt"></i> سرعت پایین‌تر</li><li><i class="fas fa-user-friends"></i> محدودیت کاربران</li><li><i class="fas fa-hourglass-half"></i> محدودیت زمانی</li><li><i class="fas fa-leaf"></i> مناسب استفاده سبک</li></ul></div>
         </div>
         <div class="operator-dropdown"><select id="operatorSelect" class="neon-select"><option value="ایرانسل">ایرانسل</option><option value="همراه اول">همراه اول</option><option value="رایتل">رایتل</option><option value="شاتل">شاتل</option><option value="مخابرات">مخابرات</option><option value="آسیاتک">آسیاتک</option><option value="های‌وب">های‌وب</option><option value="پارس آنلاین">پارس آنلاین</option><option value="سایر اپراتورها">سایر اپراتورها</option></select></div>
-        <div class="volume-buttons" id="volumeButtons"><button class="volume-chip active-volume" data-volume="تست رایگان">تست رایگان</button><button class="volume-chip" data-volume="1 گیگ">1 گیگ</button><button class="volume-chip" data-volume="2 گیگ">2 گیگ</button><button class="volume-chip" data-volume="10 گیگ">10 گیگ</button><button class="volume-chip" data-volume="20 گیگ">20 گیگ</button><button class="volume-chip" data-volume="50 گیگ">50 گیگ</button><button class="volume-chip" data-volume="100 گیگ">100 گیگ</button></div>
-        <div class="order-btn-wrapper"><button id="orderButton" class="btn-order"><i class="fab fa-telegram"></i> ثبت سفارش از طریق تلگرام</button></div>
+        <div class="volume-buttons" id="volumeButtons"><button class="volume-chip active-volume" data-volume="تست رایگان">تست رایگان</button><button class="volume-chip" data-volume="1 گیگ">1 گیگ</button><button class="volume-chip" data-volume="5 گیگ">5 گیگ</button><button class="volume-chip" data-volume="10 گیگ">10 گیگ</button><button class="volume-chip" data-volume="20 گیگ">20 گیگ</button><button class="volume-chip" data-volume="50 گیگ">50 گیگ</button><button class="volume-chip" data-volume="100 گیگ">100 گیگ</button></div>
+        <div class="order-btn-wrapper"><button id="orderButton" class="btn-order"><i class="fab fa-telegram"></i> ثبت سفارش</button></div>
         <div class="free-trial-card"><i class="fas fa-gift" style="font-size:2rem; color:var(--neon-blue);"></i><h3>دریافت تست رایگان ویژه</h3><p>بدون نیاز به پرداخت، سرویس تست رایگان را دریافت کنید.</p><a href="https://t.me/JpetoShop_ad" target="_blank" class="free-trial-btn" style="display:inline-block; margin-top:1rem; border:1px solid var(--neon-blue); border-radius:40px; padding:0.5rem 1.5rem; color:var(--neon-blue); text-decoration:none;"><i class="fab fa-telegram"></i> دریافت تست رایگان در تلگرام</a></div>
     </div></section>
 
-    <!-- سوالات متداول به‌روز شده (اضافه شدن سوالات جدید) -->
     <section id="faq"><div class="container">
         <h2 class="section-title"><span>سوالات متداول</span></h2>
         <div class="faq-list">
@@ -534,7 +605,6 @@
             <div class="faq-item"><div class="faq-question"><span>🔹 آیا امکان ارتقا از پلن شروع به حرفه‌ای وجود دارد؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">بله، بدون نیاز به مهاجرت و با یک کلیک می‌توانید پلن خود را ارتقا دهید. منابع جدید فوراً اعمال می‌شود.</div></div>
             <div class="faq-item"><div class="faq-question"><span>🔹 مدت زمان راه‌اندازی سرویس چقدر است؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">سرویس‌های JpetoShop در کمتر از ۵ دقیقه پس از ثبت‌نامه به صورت خودکار راه‌اندازی می‌شوند.</div></div>
             <div class="faq-item"><div class="faq-question"><span>🔹 چگونه می‌توانم از پشتیبانی ۲۴ ساعته استفاده کنم؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">از طریق پیام‌رسان‌های تلگرام، روبیکا، بله و سروش با شناسه @JpetoShop و همچنین سیستم تیکت داخل پنل کاربری.</div></div>
-            <!-- سوالات جدید اضافه شده -->
             <div class="faq-item"><div class="faq-question"><span>🔹 تست رایگان چقدر حجم دارد؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">تست رایگان به حجم ۵۰۰ مگابایت و به مدت ۲۴ ساعت ارائه می‌شود تا کیفیت سرویس را ارزیابی کنید.</div></div>
             <div class="faq-item"><div class="faq-question"><span>🔹 سفارش بعد از خرید چقدر زمان می‌برد؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">سفارشات در کمتر از ۵ دقیقه به صورت خودکار فعال می‌شوند و اطلاعات به تلگرام شما ارسال می‌گردد.</div></div>
             <div class="faq-item"><div class="faq-question"><span>🔹 روی چند دستگاه قابل استفاده است؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">بسته به پلن انتخابی، در پلن VIP تعداد دستگاه نامحدود، در معمولی تا ۵ دستگاه و در اقتصادی تا ۲ دستگاه به صورت همزمان پشتیبانی می‌شود.</div></div>
@@ -543,7 +613,6 @@
         </div>
     </div></section>
 
-    <!-- ارتباط با ما با دکمه کپی آیدی تلگرام -->
     <section id="contact"><div class="container">
         <h2 class="section-title"><span>ارتباط با JpetoShop</span></h2>
         <div class="contact-grid">
@@ -551,15 +620,39 @@
             <a href="https://rubika.ir/JpetoShop" target="_blank" class="contact-card"><i class="fas fa-dove"></i><span>Rubika: @JpetoShop</span></a>
             <a href="https://ble.ir/JpetoShop" target="_blank" class="contact-card"><i class="fas fa-bell"></i><span>Bale: @JpetoShop</span></a>
             <a href="https://sapp.ir/JpetoShop" target="_blank" class="contact-card"><i class="fas fa-headset"></i><span>Soroush: @JpetoShop</span></a>
-            <!-- دکمه کپی آیدی جدید -->
             <div class="contact-card copy-btn" id="copyTelegramId" style="cursor:pointer;"><i class="fas fa-copy"></i><span>کپی آیدی تلگرام ( @JpetoShop_ad )</span></div>
+            <a href="https://t.me/JpetoShop_ad2" target="_blank" class="contact-card"><i class="fab fa-telegram"></i><span>ادمین دوم: @JpetoShop_ad2</span></a>
+        </div>
+        <div style="text-align:center; margin-top: -1rem; margin-bottom: 1rem;">
+            <small style="color:#aaa;">در صورت عدم پاسخ ادمین اول، با ادمین دوم تماس بگیرید</small>
         </div>
     </div></section>
 </main>
 <footer><div class="container"><p>© ۲۰۲۵ JpetoShop | تمامی حقوق محفوظ است | همراه همیشگی کسب‌وکارهای دیجیتال</p><p style="margin-top:8px; font-size:0.8rem;"><i class="fas fa-shield-alt"></i> سرعت · امنیت · پشتیبانی ۲۴ ساعته · راه‌اندازی سریع</p></div></footer>
 
+<!-- Modal Popup برای انتخاب ادمین -->
+<div id="orderModal" class="modal-overlay">
+    <div class="modal-container">
+        <button class="close-modal" id="closeModalBtn">&times;</button>
+        <h3>انتخاب ادمین جهت ثبت سفارش</h3>
+        <div class="admin-option">
+            <div class="admin-id">🟢 ادمین ۱</div>
+            <div>@JpetoShop_ad</div>
+            <button class="modal-btn" id="sendToAdmin1">ارسال سفارش به ادمین ۱</button>
+        </div>
+        <div class="admin-option">
+            <div class="admin-id">🟢 ادمین ۲</div>
+            <div>@JpetoShop_ad2</div>
+            <button class="modal-btn" id="sendToAdmin2">ارسال سفارش به ادمین ۲</button>
+        </div>
+        <div class="warning-text">
+            ⚠️ در صورت عدم پاسخگویی یکی از ادمین‌ها، می‌توانید سفارش خود را برای ادمین دیگر ارسال کنید.
+        </div>
+    </div>
+</div>
+
 <script>
-    // ==== تمام توابع قبلی + شمارنده و کپی ====
+    // ==== تمام توابع قبلی + مودال سفارش ====
     // FAQ Accordion
     document.querySelectorAll('.faq-item').forEach(item => {
         const q = item.querySelector('.faq-question');
@@ -584,14 +677,58 @@
         if(window.scrollY > 10) { header.style.background = 'rgba(0, 0, 8, 0.85)'; header.style.backdropFilter = 'blur(20px)'; }
         else { header.style.background = 'rgba(3, 3, 10, 0.75)'; header.style.backdropFilter = 'blur(14px)'; }
     });
-    // product selection logic (from old version)
+    // product selection logic
     let selectedService = "V2RayNG", selectedPlan = "VIP", selectedOperator = "ایرانسل", selectedVolume = "تست رایگان";
     document.querySelectorAll('.service-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.service-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); selectedService = btn.getAttribute('data-service'); }); });
     document.querySelectorAll('.plan-card-select').forEach(card => { card.addEventListener('click', () => { document.querySelectorAll('.plan-card-select').forEach(c=>c.classList.remove('active-plan')); card.classList.add('active-plan'); selectedPlan = card.getAttribute('data-plan'); }); });
     document.getElementById('operatorSelect')?.addEventListener('change', (e) => { selectedOperator = e.target.value; });
     document.querySelectorAll('.volume-chip').forEach(chip => { chip.addEventListener('click', () => { document.querySelectorAll('.volume-chip').forEach(c=>c.classList.remove('active-volume')); chip.classList.add('active-volume'); selectedVolume = chip.getAttribute('data-volume'); }); });
-    document.getElementById('orderButton')?.addEventListener('click', () => { const msg = `سفارش جدید\nسرویس: ${selectedService}\nپلن: ${selectedPlan}\nاپراتور: ${selectedOperator}\nحجم: ${selectedVolume}`; window.open(`https://t.me/JpetoShop_ad?text=${encodeURIComponent(msg)}`, '_blank'); });
-    // شمارنده انیمیشن (آمار کاربران)
+    
+    // تابع تولید پیام سفارش با تاریخ و ساعت فعلی
+    function getPersianDateTime() {
+        const now = new Date();
+        return now.toLocaleString('fa-IR', { dateStyle: 'full', timeStyle: 'medium' });
+    }
+    function buildOrderMessage() {
+        const datetime = getPersianDateTime();
+        return `🛒 ثبت سفارش جدید از طریق سایت JpetoShop
+📱 سرویس: ${selectedService}
+⭐ پلن: ${selectedPlan}
+📶 اپراتور: ${selectedOperator}
+📦 حجم: ${selectedVolume}
+🕒 زمان ثبت سفارش: ${datetime}
+━━━━━━━━━━━━━━
+لطفاً جهت تکمیل سفارش راهنمایی فرمایید.`;
+    }
+    
+    // Modal elements
+    const modal = document.getElementById('orderModal');
+    const orderBtn = document.getElementById('orderButton');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const sendToAdmin1 = document.getElementById('sendToAdmin1');
+    const sendToAdmin2 = document.getElementById('sendToAdmin2');
+    
+    function openModal() {
+        modal.classList.add('active');
+    }
+    function closeModal() {
+        modal.classList.remove('active');
+    }
+    function sendToAdmin(adminUsername) {
+        const message = buildOrderMessage();
+        const encodedMsg = encodeURIComponent(message);
+        window.open(`https://t.me/${adminUsername}?text=${encodedMsg}`, '_blank');
+        closeModal();
+    }
+    
+    if(orderBtn) orderBtn.addEventListener('click', openModal);
+    if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if(sendToAdmin1) sendToAdmin1.addEventListener('click', () => sendToAdmin('JpetoShop_ad'));
+    if(sendToAdmin2) sendToAdmin2.addEventListener('click', () => sendToAdmin('JpetoShop_ad2'));
+    // close modal when clicking outside
+    modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+    
+    // شمارنده انیمیشن آمار کاربران
     function animateCounter(element, target, suffix='') {
         let current = 0;
         const step = Math.ceil(target / 60);
@@ -602,7 +739,8 @@
     function startCounters() { if(!counted) { counted=true; animateCounter(document.getElementById('activeUsers'), 1280); animateCounter(document.getElementById('deliveredServices'), 3450); animateCounter(document.getElementById('stabilityPercent'), 99.9, '%'); } }
     const observer = new IntersectionObserver((entries) => { if(entries[0].isIntersecting) startCounters(); }, { threshold: 0.3 });
     if(statsSection) observer.observe(statsSection);
-    // کپی آیدی تلگرام
+    
+    // copy id functionality
     document.getElementById('copyTelegramId')?.addEventListener('click', () => { navigator.clipboard.writeText('@JpetoShop_ad').then(() => alert('آیدی @JpetoShop_ad با موفقیت کپی شد!')); });
 </script>
 </body>
